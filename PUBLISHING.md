@@ -64,9 +64,13 @@ npm publish
 
 `npm publish` will ask for your 2FA code. That is the whole thing.
 
-You do not strictly need the first two commands, because `prepublishOnly` runs
-both for you and refuses to publish if either fails. Running them yourself
-first just means you see the failure sooner.
+You do not strictly need the first two commands. `prepublishOnly` runs both for
+you and refuses to publish if either fails, so `npm publish` on its own is the
+complete sequence. Running them yourself first just means you see a failure
+sooner, before npm asks for your 2FA code.
+
+`npm pack --dry-run` below is **optional**. It previews the tarball and sends
+nothing. Skipping it does not leave anything undone.
 
 ### What gets uploaded
 

@@ -8,6 +8,10 @@
     "type": "git",
     "url": "git+https://github.com/BinyamMamo/clixa-core.git"
   },
+  "homepage": "https://clixa-tools.vercel.app",
+  "bugs": {
+    "url": "https://github.com/BinyamMamo/clixa-core/issues"
+  },
   "keywords": [
     "clinical",
     "calculator",
