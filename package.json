@@ -1,5 +1,5 @@
 {
-  "name": "@clixa/core",
+  "name": "clixa-core",
   "version": "0.1.0",
   "description": "Clinical calculation engine: 63 calculators, medical scores and AJCC/FIGO staging, with Ethiopian calendar support. Pure TypeScript, no DOM, no dependencies.",
   "license": "UNLICENSED",
@@ -34,9 +34,6 @@
       "import": "./dist/who/zscore.js"
     },
     "./package.json": "./package.json"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "scripts": {
     "build": "tsup",

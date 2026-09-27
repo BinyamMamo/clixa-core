@@ -1,4 +1,4 @@
-# @clixa/core
+# clixa-core
 
 The clinical calculation engine behind Clixa Tools and Hakim Click. 63
 calculators, medical scores and AJCC/FIGO cancer staging, with WHO growth
@@ -8,7 +8,7 @@ Pure TypeScript. No DOM, no network, no dependencies. It computes and it
 validates; drawing the form is the caller's job.
 
 ```bash
-pnpm add @clixa/core
+pnpm add clixa-core
 ```
 
 ## Two ways in
@@ -17,7 +17,7 @@ Most callers want `runTool`. It validates, coerces types, converts nothing
 (inputs must already be in base units), and never throws.
 
 ```ts
-import { runTool } from '@clixa/core';
+import { runTool } from 'clixa-core';
 
 const run = runTool('egfr', { sex: 'm', age: 54, cr: 1.4 });
 
@@ -55,7 +55,7 @@ accepts more than one unit declares them, and the first is the base:
 Converting is the UI's job. Use `toBase` before calling, `fromBase` to display:
 
 ```ts
-import { toBase, fromBase } from '@clixa/core';
+import { toBase, fromBase } from 'clixa-core';
 
 toBase(88, 'µmol/L');   // 0.995 mg/dL
 fromBase(1.4, 'µmol/L') // 123.8
@@ -66,7 +66,7 @@ fromBase(1.4, 'µmol/L') // 123.8
 Every calculator carries its inputs as data, so a form is a `.map()`.
 
 ```ts
-import { CALCS } from '@clixa/core';
+import { CALCS } from 'clixa-core';
 
 const calc = CALCS.egfr;
 
@@ -108,7 +108,7 @@ wants a full row.
 whichever shape your provider wants.
 
 ```ts
-import { toolDeclarations, toolInputSchema, runTool } from '@clixa/core';
+import { toolDeclarations, toolInputSchema, runTool } from 'clixa-core';
 
 toolDeclarations();
 // [ { id: 'egfr',
@@ -159,7 +159,7 @@ function call(name, args) {
 ## Searching
 
 ```ts
-import { searchTools, CALCS } from '@clixa/core';
+import { searchTools, CALCS } from 'clixa-core';
 
 searchTools('kidney', CALCS, undefined, 3);  // [{ id: 'fena' }, { id: 'egfr' }, { id: 'crcl' }]
 ```
@@ -173,7 +173,7 @@ Calculators are grouped by department, and by audience. A `user` audience
 cannot reach chemotherapy dosing.
 
 ```ts
-import { TOOLS } from '@clixa/core';
+import { TOOLS } from 'clixa-core';
 
 TOOLS.pro;    // { 'General Medicine': ['ag','bmi','bmr',...], Oncology: [...], ... }
 TOOLS.user;   // the safe subset

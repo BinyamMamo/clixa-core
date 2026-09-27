@@ -1,4 +1,4 @@
-# Publishing @clixa/core
+# Publishing clixa-core
 
 Written for the first time you do this. Everything in part one happens once,
 ever. After that, releasing is three commands.
@@ -19,21 +19,24 @@ npm requires 2FA to publish. Settings, then Two-Factor Authentication, and pick
 Turn this on before you try to publish. Enabling it halfway through is more
 annoying than doing it first.
 
-### 3. The organisation
+### 3. There is no step three
 
-`@clixa/core` is a *scoped* package. The `@clixa` part is an organisation and
-it has to exist before anything can be published into it.
+`clixa-core` is an **unscoped** package, so there is no organisation to create
+and nothing to pay for. Unscoped packages are public by default.
 
-Go to [npmjs.com/org/create](https://www.npmjs.com/org/create), name it
-`clixa`, and choose the **free** plan.
+This was deliberate. The scoped name `@clixa/core` needed an organisation
+called `clixa`, and that name was already taken. Rather than settle for a
+longer scope, the package dropped the scope entirely: `npm install clixa-core`
+is shorter than `npm install @clixa/core` anyway, and your npm username never
+appears anywhere a consumer sees.
 
-The free plan publishes public packages. Private packages need the paid plan,
-around seven dollars a month per member. These are clinical calculators, not
-credentials, and the value is in the golden test suite rather than in secrecy,
-so public is the right choice and it is free.
+If you later want a scope, publishing unscoped now does not block it. You would
+publish `@something/core` as a new package and deprecate this one.
 
-If the name `clixa` is taken, `clixa-health` also works. The package name in
-`package.json` has to match whatever you register, so change it there too.
+A note on usernames, since it comes up: **npm usernames cannot be changed.**
+There is no rename. The only route is a new account and transferring ownership
+of the package to it. Pick one you can live with at signup. It does not appear
+in the install line, only on the package page as the publisher.
 
 ## Part two: this machine, once
 
@@ -123,14 +126,14 @@ number differed last month.
 
 ## When something goes wrong
 
-**`402 Payment Required`**
-Publishing a scoped package as private without a paid plan. The
-`publishConfig.access: public` in `package.json` prevents this, but if you ever
-see it, add `--access public` to the publish command.
-
 **`403 Forbidden`**
-Either the `@clixa` organisation does not exist, or your account is not a
-member of it. Check [npmjs.com/settings](https://www.npmjs.com/settings).
+Someone else owns that package name, or you are signed in as a different
+account from the one that owns it. `npm whoami` tells you who npm thinks you
+are.
+
+**`402 Payment Required`**
+Only happens with scoped packages on a private plan. `clixa-core` is unscoped
+and public, so you should not see it.
 
 **`You must verify your email before publishing`**
 Check your inbox for the verification link from signup.
@@ -143,14 +146,14 @@ again.
 Within 72 hours you can remove it:
 
 ```bash
-npm unpublish @clixa/core@0.1.1
+npm unpublish clixa-core@0.1.1
 ```
 
 After 72 hours you cannot. Deprecate instead, which leaves it installable but
 warns anyone who does:
 
 ```bash
-npm deprecate @clixa/core@0.1.1 "Broken eGFR rounding, use 0.1.2"
+npm deprecate clixa-core@0.1.1 "Broken eGFR rounding, use 0.1.2"
 ```
 
 Publishing a fixed version is almost always better than unpublishing a bad one.
